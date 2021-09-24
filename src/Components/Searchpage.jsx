@@ -12,9 +12,11 @@ function Searchpage() {
           aria-label="Search!"
           aria-describedby="basic-addon2"
         />
-        <Button variant="outline-secondary" id="button-addon2" type="file">
-          Image
-        </Button>
+        <form>
+          <Button variant="outline-secondary" id="button-addon2">
+            Image
+          </Button>
+        </form>
       </InputGroup>
       <div className="buttons">
         <Button variant="primary" className="narrowsearch-button" active>
