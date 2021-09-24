@@ -1,0 +1,10 @@
+.narrowsearch-button {
+  margin-right: 10px;
+  background-color: #ebe710 !important;
+  border: none;
+  color: rgb(59, 59, 59) !important;
+}
+
+.filter-headings {
+  font-weight: bolder !important;
+}
