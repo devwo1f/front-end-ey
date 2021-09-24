@@ -59,6 +59,12 @@ function Filtermodal() {
                   <Form.Check label="Only Text" />
                 </Col>
               </Row>
+              <br />
+              <Modal.Footer>
+                <Button variant="primary" className="narrowsearch-button">
+                  Search!
+                </Button>
+              </Modal.Footer>
             </Form>
           </Container>
         </Modal.Body>
