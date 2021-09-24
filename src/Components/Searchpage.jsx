@@ -1,6 +1,7 @@
 import "../css/searchpage.css";
 import logo1 from "../Assets/ey-logo.png";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
+import Filtermodal from "./Filtermodal";
 
 function Searchpage() {
   return (
@@ -19,9 +20,7 @@ function Searchpage() {
         </form>
       </InputGroup>
       <div className="buttons">
-        <Button variant="primary" className="narrowsearch-button" active>
-          Narrow Search
-        </Button>{" "}
+        <Filtermodal />{" "}
         <Button variant="secondary" className="broadsearch-button" active>
           Broad Search
         </Button>
