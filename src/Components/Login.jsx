@@ -2,8 +2,6 @@ import { Container } from "react-bootstrap";
 import { Button, Form } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
-import { config } from "../authentication/config";
-import { PublicClientApplication } from "@azure/msal-browser";
 
 function Login() {
   return (
