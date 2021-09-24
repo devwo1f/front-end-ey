@@ -38,6 +38,17 @@ function Filtermodal() {
                   <Form.Check label="Video" />
                   <Form.Check label="Document" />
                   <Form.Check label="Image" />
+                  <br />
+                  <Form.Label>
+                    <span className="filter-headings">Department:</span>
+                    <Form.Select aria-label="Default select example">
+                      <option>Department</option>
+                      <option value="1">Engineering</option>
+                      <option value="2">Accounts</option>
+                      <option value="3">Finance</option>
+                      <option value="3">Public Relations</option>
+                    </Form.Select>
+                  </Form.Label>
                 </Col>
                 <Col xs={9} md={6}>
                   <Form.Label>
