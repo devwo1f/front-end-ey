@@ -13,7 +13,7 @@ body {
   margin: auto;
   display: grid;
   justify-content: center;
-  margin-top: 25vh;
+  margin-top: 15vh;
 }
 
 .logo {
@@ -22,5 +22,5 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 5vh;
 }
