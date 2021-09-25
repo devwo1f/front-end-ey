@@ -4,6 +4,7 @@ import Register from "./Components/Register";
 import Searchpage from "./Components/Searchpage"
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import Loggedin from './Components/Loggedin';
+import SearchResultsPage from './Components/SearchResultsPage';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/register" component={Register} />
       <Route path="/loggedin" component={Loggedin} />
       <Route path="/searchpage" component={Searchpage} />
+      <Route path="/search" component={SearchResultsPage} />
     </Router>
   );
 }
