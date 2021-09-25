@@ -7,13 +7,13 @@ import {
   CloseButton,
   Card,
 } from "react-bootstrap";
-import Navbarcommon from "./Navbar";
 import "../css/sidebar.css";
+import NavbarCommonAcross from "./NavbarCommonAcross";
 
 function SearchResultsPage() {
   return (
     <div>
-      <Navbarcommon />
+      <NavbarCommonAcross />
       <Container>
         <Row>
           <Col sm={2}>
@@ -61,7 +61,7 @@ function SearchResultsPage() {
                 Uploaded by me <CloseButton className="closebutton-tags" />
               </Badge>{" "}
               <div className="results">
-                <Row xs={1} md={3} className="g-4">
+                <Row xs={2} md={3} className="g-4">
                   {Array.from({ length: 20 }).map((_, idx) => (
                     <Col>
                       <Card>
