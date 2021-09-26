@@ -124,39 +124,54 @@ function Register() {
               value={newUser.confirmpassword}
             />
           </Form.Group>
+          <Form.Text>
+            {!passwordError.confirmPassword && (
+              <div className="text-danger mb-3">Password doesn't match!</div>
+            )}
+          </Form.Text>
 
           <ul className="mb-4">
             <li
               className={
-                passwordError.isLengthy ? "text-success" : "text-danger"
+                passwordError.isLengthy
+                  ? "text-success validation-text"
+                  : "text-danger validation-text"
               }
             >
               Min 8 characters
             </li>
             <li
               className={
-                passwordError.hasUpper ? "text-success" : "text-danger"
+                passwordError.hasUpper
+                  ? "text-success validation-text"
+                  : "text-danger validation-text"
               }
             >
               At least One upper case
             </li>
             <li
               className={
-                passwordError.hasLower ? "text-success" : "text-danger"
+                passwordError.hasLower
+                  ? "text-success validation-text"
+                  : "text-danger validation-text"
               }
             >
               At least one lower case
             </li>
             <li
               className={
-                passwordError.hasNumber ? "text-success" : "text-danger"
+                passwordError.hasNumber
+                  ? "text-success validation-text"
+                  : "text-danger validation-text"
               }
             >
               At least one number
             </li>
             <li
               className={
-                passwordError.hasSpclChar ? "text-success" : "text-danger"
+                passwordError.hasSpclChar
+                  ? "text-success validation-text"
+                  : "text-danger validation-text"
               }
             >
               At least one special character
