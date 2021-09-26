@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Button, Form } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
@@ -27,6 +27,11 @@ function Login() {
             Login
           </Button>
         </Form>
+        <Row>
+          <Col className="justify-content-center register-button-inline">
+            New User? <a href="/register">Register Now!</a>
+          </Col>
+        </Row>
       </Container>
     </div>
   );
