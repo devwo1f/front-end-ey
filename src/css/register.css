@@ -13,7 +13,6 @@ body {
   margin: auto;
   display: grid;
   justify-content: center;
-  margin-top: 15vh;
 }
 
 .logo {
@@ -23,4 +22,8 @@ body {
   transform: translate(-50%, -50%);
   width: 200px;
   margin-bottom: 5vh;
+}
+
+.validation-text {
+  font-size: 0.75rem;
 }
