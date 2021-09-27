@@ -94,16 +94,13 @@ function Register() {
               onChange={handleOnChange}
               value={newUser.email}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
           <Col md>
-            <FloatingLabel
-              controlId="floatingSelectGrid"
-              label="Works with selects"
-            >
-              <Form.Select aria-label="Select your department">
+            <FloatingLabel label="Select your department">
+              <Form.Select
+                aria-label="Select your department"
+                className="department-select-register"
+              >
                 <option>Department</option>
                 <option value="1">Engineering</option>
                 <option value="2">Public Relations</option>
