@@ -72,6 +72,7 @@ function Register() {
                 onChange={handleOnChange}
                 placeholder="First Name"
                 value={newUser.firstname}
+                required
               />
             </Form.Group>
 
@@ -82,6 +83,7 @@ function Register() {
                 placeholder="Last Name"
                 onChange={handleOnChange}
                 value={newUser.lastname}
+                required
               />
             </Form.Group>
           </Row>
@@ -93,6 +95,7 @@ function Register() {
               placeholder="Enter email"
               onChange={handleOnChange}
               value={newUser.email}
+              required
             />
           </Form.Group>
           <Col md>
@@ -116,6 +119,7 @@ function Register() {
               placeholder="Password"
               onChange={handleOnChange}
               value={newUser.password}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -125,6 +129,7 @@ function Register() {
               placeholder="Confirm Password"
               onChange={handleOnChange}
               value={newUser.confirmpassword}
+              required
             />
           </Form.Group>
           <Form.Text>
