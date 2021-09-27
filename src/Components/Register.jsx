@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
@@ -98,13 +98,19 @@ function Register() {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Control
-              type="text"
-              name="department"
-              placeholder="Department Name"
-            />
-          </Form.Group>
+          <Col md>
+            <FloatingLabel
+              controlId="floatingSelectGrid"
+              label="Works with selects"
+            >
+              <Form.Select aria-label="Select your department">
+                <option>Department</option>
+                <option value="1">Engineering</option>
+                <option value="2">Public Relations</option>
+                <option value="3">Finance</option>
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
 
           <Form.Group className="mb-3">
             <Form.Control
