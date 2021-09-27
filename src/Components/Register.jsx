@@ -62,7 +62,10 @@ function Register() {
     <div>
       <Navbarcommon />
       <Container className="register-form">
-        <Form style={{ display: "grid", justifyContent: "center" }}>
+        <Form
+          style={{ display: "grid", justifyContent: "center" }}
+          action="POST"
+        >
           <img className="logo" src={logo} alt="ey-logo" />
           <Row className="mb-3">
             <Form.Group as={Col}>
