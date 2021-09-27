@@ -27,3 +27,7 @@ body {
 .validation-text {
   font-size: 0.75rem;
 }
+
+.department-select-register {
+  margin-bottom: 1rem;
+}
