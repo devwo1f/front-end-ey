@@ -5,66 +5,90 @@ import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  password: "",
-  confirmpassword: "",
-};
+// const initialState = {
+//   firstname: "",
+//   lastname: "",
+//   email: "",
+//   password: "",
+//   confirmpassword: "",
+// };
 
-const passVerificationError = {
-  isLengthy: false,
-  hasUpper: false,
-  hasLower: false,
-  hasSpclChar: false,
-  hasNumber: false,
-  confirmPassword: false,
-};
+// const passVerificationError = {
+//   isLengthy: false,
+//   hasUpper: false,
+//   hasLower: false,
+//   hasSpclChar: false,
+//   hasNumber: false,
+//   confirmPassword: false,
+// };
 
 function Register() {
-  const [newUser, setNewUser] = useState(initialState);
-  const [passwordError, setPasswordError] = useState(passVerificationError);
+  // const [newUser, setNewUser] = useState(initialState);
+  // const [passwordError, setPasswordError] = useState(passVerificationError);
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {}, [newUser]);
+  // useEffect(() => {}, [newUser]);
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
 
-    setNewUser({ ...newUser, [name]: value });
+  //   setNewUser({ ...newUser, [name]: value });
 
-    if (name === "confirmpassword") {
-      setPasswordError({
-        ...passwordError,
-        confirmPassword: newUser.password === value,
-      });
-    }
+  //   if (name === "confirmpassword") {
+  //     setPasswordError({
+  //       ...passwordError,
+  //       confirmPassword: newUser.password === value,
+  //     });
+  //   }
 
-    if (name === "password") {
-      const isLengthy = value.length > 8;
-      const hasUpper = /[A-Z]/.test(value);
-      const hasLower = /[a-z]/.test(value);
-      const hasNumber = /[0-9]/.test(value);
-      const hasSpclChar = /[@,!,#,%,&]/.test(value);
+  //   if (name === "password") {
+  //     const isLengthy = value.length > 8;
+  //     const hasUpper = /[A-Z]/.test(value);
+  //     const hasLower = /[a-z]/.test(value);
+  //     const hasNumber = /[0-9]/.test(value);
+  //     const hasSpclChar = /[@,!,#,%,&]/.test(value);
 
-      setPasswordError({
-        ...passwordError,
-        isLengthy,
-        hasLower,
-        hasNumber,
-        hasSpclChar,
-        hasUpper,
-      });
-    }
-  };
-  console.log(newUser);
+  //     setPasswordError({
+  //       ...passwordError,
+  //       isLengthy,
+  //       hasLower,
+  //       hasNumber,
+  //       hasSpclChar,
+  //       hasUpper,
+  //     });
+  //   }
+  // };
+  // console.log(newUser);
+
+  async function registerUser(event) {
+    event.preventDefault();
+    const response = await fetch("http://localhost:4000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstname,
+        lastname,
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <div>
       <Navbarcommon />
       <Container className="register-form">
         <Form
           style={{ display: "grid", justifyContent: "center" }}
-          action="POST"
+          onSubmit={registerUser}
         >
           <img className="logo" src={logo} alt="ey-logo" />
           <Row className="mb-3">
@@ -72,9 +96,9 @@ function Register() {
               <Form.Control
                 type="text"
                 name="firstname"
-                onChange={handleOnChange}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First Name"
-                value={newUser.firstname}
+                value={firstname}
                 required
               />
             </Form.Group>
@@ -84,8 +108,8 @@ function Register() {
                 type="text"
                 name="lastname"
                 placeholder="Last Name"
-                onChange={handleOnChange}
-                value={newUser.lastname}
+                onChange={(e) => setLastName(e.target.value)}
+                value={lastname}
                 required
               />
             </Form.Group>
@@ -96,8 +120,8 @@ function Register() {
               type="email"
               name="email"
               placeholder="Enter email"
-              onChange={handleOnChange}
-              value={newUser.email}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
             />
           </Form.Group>
@@ -120,28 +144,28 @@ function Register() {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={handleOnChange}
-              value={newUser.password}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          {/* <Form.Group className="mb-3">
             <Form.Control
               type="password"
               name="confirmpassword"
               placeholder="Confirm Password"
               onChange={handleOnChange}
-              value={newUser.confirmpassword}
+              value={nonfirmpassword}
               required
             />
-          </Form.Group>
-          <Form.Text>
+          </Form.Group> */}
+          {/* <Form.Text>
             {!passwordError.confirmPassword && (
               <div className="text-danger mb-3">Password doesn't match!</div>
             )}
-          </Form.Text>
+          </Form.Text> */}
 
-          <ul className="mb-4">
+          {/* <ul className="mb-4">
             <li
               className={
                 passwordError.isLengthy
@@ -187,12 +211,8 @@ function Register() {
             >
               At least one special character
             </li>
-          </ul>
-          <Button
-            variant="primary"
-            type="submit"
-            disabled={Object.values(passwordError).includes(false)}
-          >
+          </ul> */}
+          <Button variant="primary" type="submit" value="register">
             Register
           </Button>
         </Form>
