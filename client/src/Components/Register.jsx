@@ -4,6 +4,7 @@ import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
+import { useHistory } from "react-router-dom";
 
 // const initialState = {
 //   firstname: "",
@@ -23,6 +24,7 @@ import Navbarcommon from "./Navbar";
 // };
 
 function Register() {
+  const history = useHistory();
   // const [newUser, setNewUser] = useState(initialState);
   // const [passwordError, setPasswordError] = useState(passVerificationError);
   const [firstname, setFirstName] = useState("");
@@ -65,7 +67,8 @@ function Register() {
 
   async function registerUser(event) {
     event.preventDefault();
-    const response = await fetch("http://localhost:4000/api/register", {
+
+    const response = await fetch("http://localhost:1337/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +82,10 @@ function Register() {
     });
 
     const data = await response.json();
-    console.log(data);
+
+    if (data.status === "ok") {
+      history.push("/login");
+    }
   }
 
   return (
@@ -117,12 +123,10 @@ function Register() {
 
           <Form.Group className="mb-3">
             <Form.Control
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              onChange={(e) => setEmail(e.target.value)}
               value={email}
-              required
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
             />
           </Form.Group>
           <Col md>
@@ -141,12 +145,10 @@ function Register() {
 
           <Form.Group className="mb-3">
             <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
               value={password}
-              required
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
             />
           </Form.Group>
           {/* <Form.Group className="mb-3">
