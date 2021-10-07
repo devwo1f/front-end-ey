@@ -7,6 +7,7 @@ function UploadModal() {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState();
   const currTime = Date.now();
+  const fileName = userName + "_" + currTime;
 
   const onFileChange = (e) => setFile(e.target.files[0]);
 
@@ -23,9 +24,7 @@ function UploadModal() {
       access: "container",
     });
 
-    const blobClient = containerClient.getBlockBlobClient(
-      userName + "_" + currTime
-    );
+    const blobClient = containerClient.getBlockBlobClient(fileName);
     const options = { blobHTTPHeaders: { blobContentType: file.type } };
     await blobClient.uploadBrowserData(file, options);
   }
