@@ -4,10 +4,22 @@ import { Button, Form } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
 import Navbarcommon from "./Navbar";
+import { useHistory } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
+
+  const history = useHistory();
+
+  // var myHeaders = new Headers();
+  // myHeaders.append("Access-Control-Allow-Origin", "*");
+  // myHeaders.append(
+  //   "Access-Control-Allow-Methods",
+  //   "GET, POST, PUT, DELETE, OPTIONS"
+  // );
+  // myHeaders.append("Access-Control-Allow-Headers", "Authorization, Lang");
 
   function loginUser() {
     var requestOptions = {
@@ -16,11 +28,18 @@ function Login() {
     };
 
     fetch(
-      `http://eylogin11.azurewebsites.net/login?usr_name=${username}&pas=${password}`,
+      `http://eylogin11.azurewebsites.net/login?usr_nm=${username}&pas=${password}`,
       requestOptions
     )
       .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        if (result === "user found") {
+          history.push("/searchpage");
+          console.log(result);
+        } else {
+          console.log(result);
+        }
+      })
       .catch((error) => console.log("error", error));
   }
 

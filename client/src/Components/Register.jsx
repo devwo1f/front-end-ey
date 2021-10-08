@@ -13,7 +13,7 @@ function Register() {
 
   function registerUser() {
     var requestOptions = {
-      method: "POST",
+      method: "GET",
       redirect: "follow",
     };
 

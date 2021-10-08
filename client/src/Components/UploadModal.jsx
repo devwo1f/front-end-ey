@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Modal, Button, Container, Row, Col, Form } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Container,
+  Row,
+  Col,
+  Form,
+  ProgressBar,
+} from "react-bootstrap";
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 
 function UploadModal() {
@@ -47,6 +55,7 @@ function UploadModal() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <ProgressBar animated now={45} />
           <form>
             <input type="file" onChange={onFileChange} />
             <Button
