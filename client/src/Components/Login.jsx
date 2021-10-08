@@ -6,52 +6,37 @@ import "../css/login.css";
 import Navbarcommon from "./Navbar";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function loginUser(event) {
-    event.preventDefault();
-
-    const response = await fetch("http://localhost:1337/api/login", {
+  function loginUser() {
+    var requestOptions = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+      redirect: "follow",
+    };
 
-    const data = await response.json();
-
-    if (data.user) {
-      localStorage.setItem("token", data.user);
-      alert("Login successful");
-      window.location.href = "/dashboard";
-    } else {
-      alert("Please check your username and password");
-    }
+    fetch(
+      `http://eylogin11.azurewebsites.net/login?usr_name=${username}&pas=${password}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   }
+
   return (
     <div>
       <Navbarcommon />
       <Container className="login-form">
-        <Form
-          style={{ display: "grid", justifyContent: "center" }}
-          onSubmit={loginUser}
-        >
+        <Form style={{ display: "grid", justifyContent: "center" }}>
           <img className="logo" src={logo} alt="ey-logo" />
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              placeholder="Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="username"
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
@@ -61,7 +46,12 @@ function Login() {
               placeholder="Password"
             />
           </Form.Group>
-          <Button variant="primary" type="submit" value="login">
+          <Button
+            variant="primary"
+            type="button"
+            onClick={loginUser}
+            value="login"
+          >
             Login
           </Button>
         </Form>
