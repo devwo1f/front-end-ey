@@ -69,7 +69,7 @@ function Register() {
             </FloatingLabel>
           </Col>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 new">
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}
