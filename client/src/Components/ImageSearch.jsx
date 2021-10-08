@@ -18,12 +18,6 @@ function ImageSearch() {
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   }
-  //   function handleClick() {
-  //     fetch("https://api.kanye.rest")
-  //       .then((response) => response.text())
-  //       .then((result) => console.log(result))
-  //       .catch((error) => console.log("error", error));
-  //   }
   return (
     <form>
       <Form.Group className="mb-3">
