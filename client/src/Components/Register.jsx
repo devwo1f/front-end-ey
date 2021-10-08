@@ -4,129 +4,41 @@ import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
-import { useHistory } from "react-router-dom";
-
-// const initialState = {
-//   firstname: "",
-//   lastname: "",
-//   email: "",
-//   password: "",
-//   confirmpassword: "",
-// };
-
-// const passVerificationError = {
-//   isLengthy: false,
-//   hasUpper: false,
-//   hasLower: false,
-//   hasSpclChar: false,
-//   hasNumber: false,
-//   confirmPassword: false,
-// };
 
 function Register() {
-  const history = useHistory();
-  // const [newUser, setNewUser] = useState(initialState);
-  // const [passwordError, setPasswordError] = useState(passVerificationError);
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [department, setDepartment] = useState("");
+  const [location, setLocation] = useState("");
 
-  // useEffect(() => {}, [newUser]);
-
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setNewUser({ ...newUser, [name]: value });
-
-  //   if (name === "confirmpassword") {
-  //     setPasswordError({
-  //       ...passwordError,
-  //       confirmPassword: newUser.password === value,
-  //     });
-  //   }
-
-  //   if (name === "password") {
-  //     const isLengthy = value.length > 8;
-  //     const hasUpper = /[A-Z]/.test(value);
-  //     const hasLower = /[a-z]/.test(value);
-  //     const hasNumber = /[0-9]/.test(value);
-  //     const hasSpclChar = /[@,!,#,%,&]/.test(value);
-
-  //     setPasswordError({
-  //       ...passwordError,
-  //       isLengthy,
-  //       hasLower,
-  //       hasNumber,
-  //       hasSpclChar,
-  //       hasUpper,
-  //     });
-  //   }
-  // };
-  // console.log(newUser);
-
-  async function registerUser(event) {
-    event.preventDefault();
-
-    const response = await fetch("http://localhost:1337/api/register", {
+  function registerUser() {
+    var requestOptions = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstname,
-        lastname,
-        email,
-        password,
-      }),
-    });
+      redirect: "follow",
+    };
 
-    const data = await response.json();
-
-    if (data.status === "ok") {
-      history.push("/login");
-    }
+    fetch(
+      `http://eylogin11.azurewebsites.net/register?usr_nm=${username}&pas=${password}&loc=${location}&dep=${department}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   }
 
   return (
     <div>
       <Navbarcommon />
       <Container className="register-form">
-        <Form
-          style={{ display: "grid", justifyContent: "center" }}
-          onSubmit={registerUser}
-        >
+        <Form style={{ display: "grid", justifyContent: "center" }}>
           <img className="logo" src={logo} alt="ey-logo" />
-          <Row className="mb-3">
-            <Form.Group as={Col}>
-              <Form.Control
-                type="text"
-                name="firstname"
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="First Name"
-                value={firstname}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group as={Col}>
-              <Form.Control
-                type="text"
-                name="lastname"
-                placeholder="Last Name"
-                onChange={(e) => setLastName(e.target.value)}
-                value={lastname}
-                required
-              />
-            </Form.Group>
-          </Row>
 
           <Form.Group className="mb-3">
             <Form.Control
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              placeholder="Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="Username"
             />
           </Form.Group>
           <Col md>
@@ -134,11 +46,25 @@ function Register() {
               <Form.Select
                 aria-label="Select your department"
                 className="department-select-register"
+                onChange={(e) => setDepartment(e.target.value)}
               >
-                <option>Department</option>
-                <option value="1">Engineering</option>
-                <option value="2">Public Relations</option>
-                <option value="3">Finance</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Public Relations">Public Relations</option>
+                <option value="Finance">Finance</option>
+              </Form.Select>
+            </FloatingLabel>
+          </Col>
+
+          <Col md>
+            <FloatingLabel label="Select office location">
+              <Form.Select
+                aria-label="Select office location"
+                className="department-select-register"
+                onChange={(e) => setLocation(e.target.value)}
+              >
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
               </Form.Select>
             </FloatingLabel>
           </Col>
@@ -151,70 +77,13 @@ function Register() {
               placeholder="Password"
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3">
-            <Form.Control
-              type="password"
-              name="confirmpassword"
-              placeholder="Confirm Password"
-              onChange={handleOnChange}
-              value={nonfirmpassword}
-              required
-            />
-          </Form.Group> */}
-          {/* <Form.Text>
-            {!passwordError.confirmPassword && (
-              <div className="text-danger mb-3">Password doesn't match!</div>
-            )}
-          </Form.Text> */}
 
-          {/* <ul className="mb-4">
-            <li
-              className={
-                passwordError.isLengthy
-                  ? "text-success validation-text"
-                  : "text-danger validation-text"
-              }
-            >
-              Min 8 characters
-            </li>
-            <li
-              className={
-                passwordError.hasUpper
-                  ? "text-success validation-text"
-                  : "text-danger validation-text"
-              }
-            >
-              At least One upper case
-            </li>
-            <li
-              className={
-                passwordError.hasLower
-                  ? "text-success validation-text"
-                  : "text-danger validation-text"
-              }
-            >
-              At least one lower case
-            </li>
-            <li
-              className={
-                passwordError.hasNumber
-                  ? "text-success validation-text"
-                  : "text-danger validation-text"
-              }
-            >
-              At least one number
-            </li>
-            <li
-              className={
-                passwordError.hasSpclChar
-                  ? "text-success validation-text"
-                  : "text-danger validation-text"
-              }
-            >
-              At least one special character
-            </li>
-          </ul> */}
-          <Button variant="primary" type="submit" value="register">
+          <Button
+            variant="primary"
+            onClick={registerUser}
+            type="button"
+            value="register"
+          >
             Register
           </Button>
         </Form>
@@ -222,4 +91,5 @@ function Register() {
     </div>
   );
 }
+
 export default Register;
