@@ -3,7 +3,6 @@ import logo1 from "../Assets/ey-logo.png";
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap";
 import Filtermodal from "./Filtermodal";
 import NavbarSearchPage from "./NavbarSearchPage";
-import UploadModal from "./UploadModal";
 import ImageSearch from "./ImageSearch";
 
 function Searchpage() {
@@ -25,7 +24,6 @@ function Searchpage() {
           <Button variant="secondary" className="broadsearch-button" active>
             Broad Search
           </Button>
-          <UploadModal />
         </div>
       </div>
     </div>
