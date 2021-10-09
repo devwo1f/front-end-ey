@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 function UserGetin() {
-  const [name, setName] = useState("");
   function handleClick() {}
   return (
     <form>
