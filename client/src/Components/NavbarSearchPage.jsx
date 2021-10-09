@@ -1,7 +1,6 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
 import { Avatar } from "@mui/material";
-import { Button } from "react-bootstrap";
 import "../css/navbarsearchpage.css";
 
 function NavbarSearchPage() {
