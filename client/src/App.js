@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Loggedin from "./Components/Loggedin";
 import SearchResultsPage from "./Components/SearchResultsPage";
 import UserGetin from "./Components/UserGetin";
+import Upload from "./Components/Upload";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/searchpage" component={Searchpage} />
       <Route path="/search" component={SearchResultsPage} />
       <Route path="/get" component={UserGetin} />
+      <Route path="/upload" component={Upload} />
     </Router>
   );
 }
