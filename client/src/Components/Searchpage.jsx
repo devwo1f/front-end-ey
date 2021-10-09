@@ -4,6 +4,7 @@ import { InputGroup, FormControl, Button, Stack } from "react-bootstrap";
 import Filtermodal from "./Filtermodal";
 import NavbarSearchPage from "./NavbarSearchPage";
 import ImageSearchModal from "./ImageSearchModal";
+import { Link } from "react-router-dom";
 
 function Searchpage() {
   return (
@@ -15,22 +16,30 @@ function Searchpage() {
           <InputGroup className="form-search">
             <FormControl placeholder="Search!" />
           </InputGroup>
-          <Button variant="secondary">Search</Button>
           <div className="vr" />
           <ImageSearchModal />
         </Stack>
-        <div className="buttons">
-          <Filtermodal />{" "}
-          <Button variant="secondary" className="broadsearch-button" active>
-            Broad Search
-          </Button>
-        </div>
-        <div className="buttons">
-          <Button>Browse All</Button>{" "}
-          <Button variant="secondary" className="broadsearch-button" active>
-            Upload
-          </Button>
-        </div>
+        <Stack
+          className="searchpage-button-stack"
+          direction="horizontal"
+          gap={3}
+        >
+          <div className="buttons">
+            <Filtermodal />{" "}
+            <Button variant="secondary" className="broadsearch-button" active>
+              Broad Search
+            </Button>
+          </div>
+          <div className="vr" />
+          <div className="buttons">
+            <Button>Browse All</Button>{" "}
+            <Link to="/upload">
+              <Button variant="secondary" className="broadsearch-button" active>
+                Upload
+              </Button>
+            </Link>
+          </div>
+        </Stack>
       </div>
     </div>
   );
