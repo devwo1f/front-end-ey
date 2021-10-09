@@ -3,7 +3,6 @@ import "../css/sidebar.css";
 import NavbarCommonAcross from "./NavbarCommonAcross";
 import SearchResultsBox from "./SearchResultsBox";
 import SidebarFilters from "./SidebarFilters";
-import TagsSearchResultsBox from "./TagsSearchResultsBox";
 
 function SearchResultsPage() {
   return (
@@ -19,7 +18,6 @@ function SearchResultsPage() {
             <br />
             <div className="search-results-page">
               <h2>Search results...</h2>
-              <TagsSearchResultsBox />
               <SearchResultsBox />
             </div>
           </Col>
