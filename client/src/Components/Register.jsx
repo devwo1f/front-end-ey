@@ -4,26 +4,33 @@ import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
+import { useHistory } from "react-router";
 
 function Register() {
+  let history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [department, setDepartment] = useState("");
   const [location, setLocation] = useState("");
 
-  function registerUser() {
+  async function registerUser() {
     var requestOptions = {
       method: "GET",
       redirect: "follow",
     };
 
-    fetch(
+    const response = await fetch(
       `http://eylogin11.azurewebsites.net/register?usr_nm=${username}&pas=${password}&loc=${location}&dep=${department}`,
       requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    );
+
+    const data = await response.json();
+    console.log(data);
+    if (data === "success") {
+      history.push("/login");
+    } else {
+      alert(data);
+    }
   }
 
   return (
