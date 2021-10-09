@@ -33,11 +33,11 @@ function Login() {
     )
       .then((response) => response.text())
       .then((result) => {
-        if (result === "user found") {
+        if (result.json() === "user found") {
           history.push("/searchpage");
-          console.log(result);
+          console.log(result.json());
         } else {
-          console.log(result);
+          console.log(typeof result);
         }
       })
       .catch((error) => console.log("error", error));
