@@ -9,7 +9,6 @@ import { useHistory } from "react-router";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useState(false);
   let history = useHistory();
 
   async function loginUser() {
@@ -25,7 +24,6 @@ function Login() {
     const data = await response.json();
     console.log(data);
     if (data === "user found") {
-      setAuth(true);
       history.push("/searchpage");
     } else {
       alert("Wrong Credentials!");
