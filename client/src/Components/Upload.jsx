@@ -1,4 +1,4 @@
-import { Container, Button, Nav, Tab, Row, Col } from "react-bootstrap";
+import { Container, Nav, Tab, Row, Col } from "react-bootstrap";
 import NavbarSearchPage from "./NavbarSearchPage";
 import "../css/Upload.css";
 import ImageUpload from "./ImageUpload";
