@@ -4,43 +4,32 @@ import { Button, Form } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
 import Navbarcommon from "./Navbar";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const [auth, setAuth] = useState(false);
+  let history = useHistory();
 
-  const history = useHistory();
-
-  // var myHeaders = new Headers();
-  // myHeaders.append("Access-Control-Allow-Origin", "*");
-  // myHeaders.append(
-  //   "Access-Control-Allow-Methods",
-  //   "GET, POST, PUT, DELETE, OPTIONS"
-  // );
-  // myHeaders.append("Access-Control-Allow-Headers", "Authorization, Lang");
-
-  function loginUser() {
+  async function loginUser() {
     var requestOptions = {
       method: "POST",
       redirect: "follow",
     };
 
-    fetch(
+    const response = await fetch(
       `http://eylogin11.azurewebsites.net/login?usr_nm=${username}&pas=${password}`,
       requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => {
-        if (result.json() === "user found") {
-          history.push("/searchpage");
-          console.log(result.json());
-        } else {
-          console.log(typeof result);
-        }
-      })
-      .catch((error) => console.log("error", error));
+    );
+    const data = await response.json();
+    console.log(data);
+    if (data === "user found") {
+      setAuth(true);
+      history.push("/searchpage");
+    } else {
+      alert("Wrong Credentials!");
+    }
   }
 
   return (
