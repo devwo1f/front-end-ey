@@ -1,9 +1,9 @@
 import "../css/searchpage.css";
 import logo1 from "../Assets/ey-logo.png";
-import { InputGroup, FormControl, Button, Form } from "react-bootstrap";
+import { InputGroup, FormControl, Button, Stack } from "react-bootstrap";
 import Filtermodal from "./Filtermodal";
 import NavbarSearchPage from "./NavbarSearchPage";
-import ImageSearch from "./ImageSearch";
+import ImageSearchModal from "./ImageSearchModal";
 
 function Searchpage() {
   return (
@@ -11,18 +11,24 @@ function Searchpage() {
       <NavbarSearchPage />
       <div className="form">
         <img src={logo1} className="logo22" alt="EY_LOGO" />
-        <InputGroup className="mb-3 form-search">
-          <FormControl
-            placeholder="Search!"
-            aria-label="Search!"
-            aria-describedby="basic-addon2"
-          />
-        </InputGroup>
-        <ImageSearch />
+        <Stack direction="horizontal" gap={3}>
+          <InputGroup className="form-search">
+            <FormControl placeholder="Search!" />
+          </InputGroup>
+          <Button variant="secondary">Search</Button>
+          <div className="vr" />
+          <ImageSearchModal />
+        </Stack>
         <div className="buttons">
           <Filtermodal />{" "}
           <Button variant="secondary" className="broadsearch-button" active>
             Broad Search
+          </Button>
+        </div>
+        <div className="buttons">
+          <Button>Browse All</Button>{" "}
+          <Button variant="secondary" className="broadsearch-button" active>
+            Upload
           </Button>
         </div>
       </div>
