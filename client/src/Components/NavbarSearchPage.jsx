@@ -24,9 +24,6 @@ function NavbarSearchPage() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav className="justify-content-end">
-            <Nav.Link href="/login">
-              <Button variant="outline-light">Upload</Button>{" "}
-            </Nav.Link>
             <Nav.Link href="">
               <Avatar className="avatar_mui">A</Avatar>
             </Nav.Link>
