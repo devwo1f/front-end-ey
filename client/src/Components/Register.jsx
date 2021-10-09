@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
 import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
