@@ -1,15 +1,7 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-  NavDropdown,
-  Button,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Button, FormControl } from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
 import { Avatar } from "@mui/material";
 import "../css/navbarcommonacross.css";
-import UploadButton from "./UploadButton";
 
 function NavbarCommonAcross() {
   return (
