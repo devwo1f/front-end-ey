@@ -16,7 +16,7 @@ function App() {
       <Route path="/loggedin" component={Loggedin} />
       <Route path="/searchpage" component={Searchpage} />
       <Route path="/search" component={SearchResultsPage} />
-      <Route path="/get" component={UserGetin} />
+      <Route exact path="/" component={UserGetin} />
       <Route path="/upload" component={Upload} />
     </Router>
   );
