@@ -10,8 +10,8 @@ function Register() {
   let history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [department, setDepartment] = useState("");
-  const [location, setLocation] = useState("");
+  const [department, setDepartment] = useState("Engineering");
+  const [location, setLocation] = useState("Hyderabad");
 
   async function registerUser() {
     var requestOptions = {
@@ -46,6 +46,7 @@ function Register() {
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               placeholder="Username"
+              required
             />
           </Form.Group>
           <Col md>
@@ -82,6 +83,7 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Password"
+              required
             />
           </Form.Group>
 
