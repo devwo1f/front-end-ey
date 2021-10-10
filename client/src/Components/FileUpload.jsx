@@ -19,7 +19,7 @@ function FileUpload() {
       `https://${storageAccountName}.blob.core.windows.net/?${sasToken}`
     );
 
-    const containerClient = blobService.getContainerClient("files");
+    const containerClient = blobService.getContainerClient("uploads");
     await containerClient.createIfNotExists({
       access: "container",
     });
