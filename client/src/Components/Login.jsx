@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Button, Form } from "react-bootstrap";
@@ -6,10 +6,12 @@ import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
 import Navbarcommon from "./Navbar";
 import { useHistory } from "react-router";
+import { UserContext } from "../UserContext";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { value, setValue } = useContext(UserContext);
   let history = useHistory();
 
   async function loginUser() {
@@ -26,9 +28,11 @@ function Login() {
     console.log(data);
     if (data === "user found") {
       history.push("/searchpage");
+      setValue(username);
     } else {
       alert("Wrong Credentials!");
     }
+    console.log(username);
   }
 
   return (
