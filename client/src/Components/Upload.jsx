@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Nav, Tab, Row, Col } from "react-bootstrap";
 import NavbarSearchPage from "./NavbarSearchPage";
 import "../css/Upload.css";
