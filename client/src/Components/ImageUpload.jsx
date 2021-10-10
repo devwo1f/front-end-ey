@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-import { Form, Stack, Button } from "react-bootstrap";
+import { Form, Stack, Button, InputGroup, FormControl } from "react-bootstrap";
 import { BlobServiceClient } from "@azure/storage-blob";
+import { UserContext } from "../UserContext";
 
 function ImageUpload() {
-  const userName = "abhay";
+  const { value } = useContext(UserContext);
+  const userName = value;
   const [file, setFile] = useState();
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
+  const [tagValue, setTagValue] = useState();
+  const [desc, setDesc] = useState();
+  var data = "";
 
   const onFileChange = (e) => setFile(e.target.files[0]);
 
@@ -19,7 +24,7 @@ function ImageUpload() {
       `https://${storageAccountName}.blob.core.windows.net/?${sasToken}`
     );
 
-    const containerClient = blobService.getContainerClient("images");
+    const containerClient = blobService.getContainerClient("uploads");
     await containerClient.createIfNotExists({
       access: "container",
     });
@@ -27,6 +32,27 @@ function ImageUpload() {
     const blobClient = containerClient.getBlockBlobClient(fileName);
     const options = { blobHTTPHeaders: { blobContentType: file.type } };
     await blobClient.uploadBrowserData(file, options);
+  }
+
+  async function validate() {
+    var requestOptions = {
+      method: "POST",
+      redirect: "follow",
+    };
+
+    await fetch(
+      `http://getimgdata.azurewebsites.net/imgdata?img_url=https://feblob.blob.core.windows.net/uploads/${fileName}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        data = result;
+      })
+      .catch((error) => console.log("error", error));
+    // const data = response.json();
+    // console.log(data);
+    setTagValue(data[2]);
+    setDesc(data[1]);
   }
 
   return (
@@ -46,7 +72,24 @@ function ImageUpload() {
         >
           Upload
         </Button>
+        <div className="vr" />
+        <Button variant="outline-warning" onClick={validate}>
+          Validate
+        </Button>
       </Stack>
+      <br />
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon1">Tags</InputGroup.Text>
+        <FormControl
+          placeholder="Tags"
+          aria-describedby="basic-addon1"
+          value={tagValue}
+        />
+      </InputGroup>
+      <InputGroup>
+        <InputGroup.Text>Description</InputGroup.Text>
+        <FormControl as="textarea" aria-label="With textarea" value={desc} />
+      </InputGroup>
     </div>
   );
 }
