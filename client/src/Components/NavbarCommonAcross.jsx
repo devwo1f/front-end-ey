@@ -1,16 +1,7 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-  NavDropdown,
-  Button,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Button, FormControl } from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
 import { Avatar } from "@mui/material";
 import "../css/navbarcommonacross.css";
-import UploadButton from "./UploadButton";
-import UploadModal from "./UploadModal";
 
 function NavbarCommonAcross() {
   return (
@@ -47,9 +38,6 @@ function NavbarCommonAcross() {
             <Button className="navbar-search-button" variant="outline-warning">
               Search
             </Button>
-            <Nav.Link>
-              <UploadModal />{" "}
-            </Nav.Link>
             <Nav.Link href="">
               <Avatar className="avatar_mui">A</Avatar>
             </Nav.Link>

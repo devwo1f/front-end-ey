@@ -4,24 +4,30 @@ import { Button, Form } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/login.css";
 import Navbarcommon from "./Navbar";
+import { useHistory } from "react-router";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
 
-  function loginUser() {
+  async function loginUser() {
     var requestOptions = {
       method: "POST",
       redirect: "follow",
     };
 
-    fetch(
-      `http://eylogin11.azurewebsites.net/login?usr_name=${username}&pas=${password}`,
+    const response = await fetch(
+      `http://eylogin11.azurewebsites.net/login?usr_nm=${username}&pas=${password}`,
       requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    );
+    const data = await response.json();
+    console.log(data);
+    if (data === "user found") {
+      history.push("/searchpage");
+    } else {
+      alert("Wrong Credentials!");
+    }
   }
 
   return (
