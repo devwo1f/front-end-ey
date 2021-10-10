@@ -1,3 +1,4 @@
+import React from "react";
 import "../css/searchpage.css";
 import logo1 from "../Assets/ey-logo.png";
 import { InputGroup, FormControl, Button, Stack } from "react-bootstrap";
