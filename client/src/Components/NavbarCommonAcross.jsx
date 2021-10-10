@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Container, Nav, Button, FormControl } from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
-import { Avatar } from "@mui/material";
 import "../css/navbarcommonacross.css";
 
 function NavbarCommonAcross() {
@@ -39,9 +38,6 @@ function NavbarCommonAcross() {
             <Button className="navbar-search-button" variant="outline-warning">
               Search
             </Button>
-            <Nav.Link href="">
-              <Avatar className="avatar_mui">A</Avatar>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
