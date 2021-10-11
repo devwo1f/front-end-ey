@@ -2,17 +2,17 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { Form, Stack, Button, InputGroup, FormControl } from "react-bootstrap";
 import { BlobServiceClient } from "@azure/storage-blob";
-import { UserContext } from "../UserContext";
 
 function ImageUpload() {
-  const { value, setValue } = useContext(UserContext);
-  const userName = value;
+  const userName = sessionStorage.getItem("username");
   const [file, setFile] = useState();
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
   const [tagValue, setTagValue] = useState();
   const [desc, setDesc] = useState();
   var data = "";
+
+  console.log(userName);
 
   const onFileChange = (e) => setFile(e.target.files[0]);
 
