@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import NavbarCommonAcross from "./NavbarCommonAcross";
 import { BlobServiceClient } from "@azure/storage-blob";
 import { UserContext } from "../UserContext";
+import DataContext from "../DataContext";
+import { useHistory } from "react-router";
 
 function Searchpage() {
   const [show, setShow] = useState(false);
@@ -27,6 +29,10 @@ function Searchpage() {
   const [location, setLocation] = useState(false);
   const [department, setDepartment] = useState(false);
   const [uploadedByMe, setUploadedByMe] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const { contextArray, setContextArray } = useContext(DataContext);
+
+  const history = useHistory();
 
   function toggle(value) {
     return !value;
@@ -62,10 +68,16 @@ function Searchpage() {
     );
     // const data = response.json();
     console.log(response);
+    history.push("/search");
   }
-  function searchFun() {
-    const response = `http://127.0.0.1:5000/searchtxt?usr_nm=abd1&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=cat`;
-    console.log(response);
+  async function searchFun() {
+    const response = await fetch(
+      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=abd1&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${searchText}`
+    );
+    const data = await response.json();
+    console.log(data);
+    setContextArray(data);
+    history.push("/search");
   }
   return (
     <div>
@@ -74,7 +86,11 @@ function Searchpage() {
         <img src={logo1} className="logo22" alt="EY_LOGO" />
         <Stack direction="horizontal" gap={3}>
           <InputGroup className="form-search">
-            <FormControl placeholder="Search!" />
+            <FormControl
+              placeholder="Search!"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </InputGroup>
           <div className="vr" />
           <>
