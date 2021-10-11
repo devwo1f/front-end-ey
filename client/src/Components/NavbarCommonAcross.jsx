@@ -2,8 +2,14 @@ import React from "react";
 import { Navbar, Container, Nav, Button, FormControl } from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
 import "../css/navbarcommonacross.css";
+import { useHistory } from "react-router";
 
 function NavbarCommonAcross() {
+  let history = useHistory();
+  function handleLogout() {
+    history.push("/login");
+    sessionStorage.removeItem("username");
+  }
   return (
     <Navbar
       collapseOnSelect
@@ -28,7 +34,11 @@ function NavbarCommonAcross() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
-          <Nav className="justify-content-end"></Nav>
+          <Nav className="justify-content-end">
+            <Button onClick={handleLogout} variant="outline-primary">
+              Logout
+            </Button>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
