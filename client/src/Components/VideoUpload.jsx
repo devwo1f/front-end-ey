@@ -2,11 +2,9 @@ import React from "react";
 import { useState, useContext } from "react";
 import { Form, Stack, Button } from "react-bootstrap";
 import { BlobServiceClient } from "@azure/storage-blob";
-import { UserContext } from "../UserContext";
 
 function VideoUpload() {
-  const { value, setValue } = useContext(UserContext);
-  const userName = value;
+  const userName = sessionStorage.getItem("username");
   const [file, setFile] = useState();
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
@@ -29,6 +27,9 @@ function VideoUpload() {
     const blobClient = containerClient.getBlockBlobClient(fileName);
     const options = { blobHTTPHeaders: { blobContentType: file.type } };
     await blobClient.uploadBrowserData(file, options);
+    const response = await fetch(
+      `http://127.0.0.1:5000/recvdoc?usr_nm=${userName}&doc_url=https://feblob.blob.core.windows.net/uploads/${fileName}`
+    );
   }
 
   return (
