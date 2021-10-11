@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import {
   Container,
   Row,
@@ -10,6 +10,7 @@ import {
   Card,
 } from "react-bootstrap";
 import "../css/sidebar.css";
+import DataContext from "../DataContext";
 import NavbarCommonAcross from "./NavbarCommonAcross";
 
 function SearchResultsPage() {
@@ -19,8 +20,12 @@ function SearchResultsPage() {
   const [department, setDepartment] = useState(false);
   const [uploadedByMe, setUploadedByMe] = useState(false);
   const [text, setText] = useState("");
-  const [array, setArray] = useState([]);
-  const ResultArr = createContext();
+  var [array, setArray] = useState(["H", "Y"]);
+  const { contextArray, setContextArray } = useContext(DataContext);
+
+  array = contextArray;
+  console.log(array);
+
   function toggle(value) {
     return !value;
   }
