@@ -15,7 +15,6 @@ import {
 import { Link } from "react-router-dom";
 import NavbarCommonAcross from "./NavbarCommonAcross";
 import { BlobServiceClient } from "@azure/storage-blob";
-import { UserContext } from "../UserContext";
 import DataContext from "../DataContext";
 import { useHistory } from "react-router";
 
@@ -32,14 +31,16 @@ function Searchpage() {
   const [searchText, setSearchText] = useState("");
   const { contextArray, setContextArray } = useContext(DataContext);
 
+  const userName = sessionStorage.getItem("username");
+
+  console.log(sessionStorage.getItem("username"));
+
   const history = useHistory();
 
   function toggle(value) {
     return !value;
   }
 
-  const { value } = useContext(UserContext);
-  const userName = value;
   const [file, setFile] = useState();
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
@@ -64,7 +65,7 @@ function Searchpage() {
     await blobClient.uploadBrowserData(file, options);
 
     const response = await fetch(
-      `http://searchapi102.azurewebsites.net/searchimg?usr_nm=abd1&upload_me=False&loc=False&dep=False&img_url=http://getimgdata.azurewebsites.net/imgdata?img_url=https://feblob.blob.core.windows.net/uploads/${fileName}`
+      `http://searchapi102.azurewebsites.net/searchimg?usr_nm=${userName}&upload_me=False&loc=False&dep=False&img_url=http://getimgdata.azurewebsites.net/imgdata?img_url=https://feblob.blob.core.windows.net/uploads/${fileName}`
     );
     // const data = response.json();
     console.log(response);
@@ -72,7 +73,7 @@ function Searchpage() {
   }
   async function searchFun() {
     const response = await fetch(
-      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=abd1&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${searchText}`
+      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${searchText}`
     );
     const data = await response.json();
     console.log(data);
