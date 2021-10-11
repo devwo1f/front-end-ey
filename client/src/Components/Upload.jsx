@@ -1,15 +1,16 @@
 import React from "react";
 import { Container, Nav, Tab, Row, Col } from "react-bootstrap";
-import NavbarSearchPage from "./NavbarSearchPage";
 import "../css/Upload.css";
 import ImageUpload from "./ImageUpload";
 import FileUpload from "./FileUpload";
 import VideoUpload from "./VideoUpload";
+import NavbarCommonAcross from "./NavbarCommonAcross";
+import "../css/navbarsearchpage.css";
 
 function Upload() {
   return (
     <div>
-      <NavbarSearchPage />
+      <NavbarCommonAcross />
       <Container className="upload-page">
         <h1 className="upload-heading">UPLOAD</h1>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
