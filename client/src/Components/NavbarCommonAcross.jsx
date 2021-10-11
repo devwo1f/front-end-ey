@@ -28,17 +28,7 @@ function NavbarCommonAcross() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
-          <Nav className="justify-content-end">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="mr-2 navbar-search-box"
-              aria-label="Search"
-            />
-            <Button className="navbar-search-button" variant="outline-warning">
-              Search
-            </Button>
-          </Nav>
+          <Nav className="justify-content-end"></Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
