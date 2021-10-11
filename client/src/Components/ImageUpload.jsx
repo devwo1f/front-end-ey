@@ -5,7 +5,7 @@ import { BlobServiceClient } from "@azure/storage-blob";
 import { UserContext } from "../UserContext";
 
 function ImageUpload() {
-  const { value } = useContext(UserContext);
+  const { value, setValue } = useContext(UserContext);
   const userName = value;
   const [file, setFile] = useState();
   const currTime = Date.now();
