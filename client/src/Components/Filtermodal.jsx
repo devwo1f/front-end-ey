@@ -5,6 +5,20 @@ import "../css/filtermodal.css";
 
 function Filtermodal() {
   const [show, setShow] = useState(false);
+  const [video, setVideo] = useState(false);
+  const [document, setDocument] = useState(false);
+  const [location, setLocation] = useState(false);
+  const [department, setDepartment] = useState(false);
+  const [uploadedByMe, setUploadedByMe] = useState(false);
+
+  function toggle(value) {
+    return !value;
+  }
+
+  function searchFun() {
+    const response = `http://127.0.0.1:5000/searchtxt?usr_nm=abd1&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=cat`;
+    console.log(response);
+  }
 
   return (
     <>
@@ -35,34 +49,38 @@ function Filtermodal() {
                   <Form.Label>
                     <span className="filter-headings">Type:</span>
                   </Form.Label>
-                  <Form.Check label="PDF" />
-                  <Form.Check label="Video" />
-                  <Form.Check label="Document" />
-                  <Form.Check label="Image" />
+                  <Form.Check onChange={() => setVideo(toggle)} label="Video" />
+                  <Form.Check
+                    onChange={() => setDocument(toggle)}
+                    label="Document"
+                  />
                   <br />
-                  <Form.Label>
-                    <span className="filter-headings">Department:</span>
-                    <Form.Select aria-label="Default select example">
-                      <option>Department</option>
-                      <option value="1">Engineering</option>
-                      <option value="2">Accounts</option>
-                      <option value="3">Finance</option>
-                      <option value="3">Public Relations</option>
-                    </Form.Select>
-                  </Form.Label>
                 </Col>
                 <Col xs={9} md={6}>
                   <Form.Label>
                     <span className="filter-headings">Additional Filters:</span>
                   </Form.Label>
-                  <Form.Check label="Uploaded By me" />
-                  <Form.Check label="Only Objects" />
-                  <Form.Check label="Only Text" />
+                  <Form.Check
+                    onChange={() => setLocation(toggle)}
+                    label="My Location"
+                  />
+                  <Form.Check
+                    onChange={() => setDepartment(toggle)}
+                    label="My Department"
+                  />
+                  <Form.Check
+                    onChange={() => setUploadedByMe(toggle)}
+                    label="Uploaded By Me"
+                  />
                 </Col>
               </Row>
               <br />
               <Modal.Footer>
-                <Button variant="primary" className="narrowsearch-button">
+                <Button
+                  variant="primary"
+                  onClick={searchFun}
+                  className="narrowsearch-button"
+                >
                   Search!
                 </Button>
               </Modal.Footer>
