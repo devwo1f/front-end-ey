@@ -1,10 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Stack, Button } from "react-bootstrap";
 import { BlobServiceClient } from "@azure/storage-blob";
+import { UserContext } from "../UserContext";
 
 function VideoUpload() {
-  const userName = "abhay";
+  const { value, setValue } = useContext(UserContext);
+  const userName = value;
   const [file, setFile] = useState();
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
