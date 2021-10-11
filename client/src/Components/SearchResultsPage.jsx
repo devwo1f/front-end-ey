@@ -23,6 +23,8 @@ function SearchResultsPage() {
   var [array, setArray] = useState(["H", "Y"]);
   const { contextArray, setContextArray } = useContext(DataContext);
 
+  const userName = sessionStorage("username");
+
   array = contextArray;
   console.log(array);
 
@@ -31,7 +33,7 @@ function SearchResultsPage() {
   }
   async function searchFun() {
     const response = await fetch(
-      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=abd1&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
+      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
     );
     const data = await response.json();
     console.log(data);
