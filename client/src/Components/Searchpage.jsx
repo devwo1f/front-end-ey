@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../css/searchpage.css";
 import logo1 from "../Assets/ey-logo.png";
 import {
@@ -15,7 +15,6 @@ import {
 import { Link } from "react-router-dom";
 import NavbarCommonAcross from "./NavbarCommonAcross";
 import { BlobServiceClient } from "@azure/storage-blob";
-import DataContext from "../DataContext";
 import { useHistory } from "react-router";
 
 function Searchpage() {
@@ -29,9 +28,17 @@ function Searchpage() {
   const [department, setDepartment] = useState(false);
   const [uploadedByMe, setUploadedByMe] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const { contextArray, setContextArray } = useContext(DataContext);
 
   const userName = sessionStorage.getItem("username");
+
+  function fileName() {
+    const userName = sessionStorage.getItem("username");
+    const currTime = Date.now();
+    const fileName = userName + "_" + currTime;
+    return fileName;
+  }
+
+  console.log(fileName());
 
   console.log(sessionStorage.getItem("username"));
 
@@ -42,8 +49,8 @@ function Searchpage() {
   }
 
   const [file, setFile] = useState();
-  const currTime = Date.now();
-  const fileName = userName + "_" + currTime;
+  // const currTime = Date.now();
+  // const fileName = userName + "_" + currTime;
 
   const onFileChange = (e) => setFile(e.target.files[0]);
 
@@ -77,7 +84,6 @@ function Searchpage() {
     );
     const data = await response.json();
     console.log(data);
-    setContextArray(data);
     history.push("/search");
   }
   return (
