@@ -19,7 +19,7 @@ function NavbarCommonAcross() {
       className="navigation-common"
     >
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img
             src={logosmall}
             width="30"
@@ -35,7 +35,17 @@ function NavbarCommonAcross() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav className="justify-content-end">
-            <Button onClick={handleLogout} variant="outline-primary">
+            <Button href="/search" className="navey" variant="outline-warning">
+              Search
+            </Button>
+            <Button href="/upload" className="navey" variant="outline-light">
+              Upload
+            </Button>{" "}
+            <Button
+              onClick={handleLogout}
+              className="navey"
+              variant="outline-primary"
+            >
               Logout
             </Button>
           </Nav>
