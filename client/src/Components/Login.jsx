@@ -25,7 +25,7 @@ function Login() {
     const data = await response.json();
     console.log(data);
     if (data === "user found") {
-      history.push("/searchpage");
+      history.push("/search");
       sessionStorage.setItem("username", username);
     } else {
       alert("Wrong Credentials!");
