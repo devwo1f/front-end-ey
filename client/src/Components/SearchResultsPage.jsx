@@ -23,11 +23,12 @@ function SearchResultsPage(props) {
   const [department, setDepartment] = useState(false);
   const [uploadedByMe, setUploadedByMe] = useState(false);
   const [text, setText] = useState("");
-  var [array, setArray] = useState(["abhay_1633949614301"]);
+  var [array, setArray] = useState([]);
   const handleShow1 = () => setShow1(true);
   const [show1, setShow1] = useState(false);
   const handleClose = () => setShow1(false);
   const [file, setFile] = useState();
+  var arr = [];
 
   const userName = sessionStorage.getItem("username");
 
@@ -59,18 +60,28 @@ function SearchResultsPage(props) {
     await blobClient.uploadBrowserData(file, options);
 
     const response = await fetch(
-      `http://searchapi104.azurewebsites.net/searchimg?usr_nm=${userName}&upload_me=False&loc=False&dep=False&img_url=https://feblob.blob.core.windows.net/uploads/${fileName}`
-    );
-    // const data = response.json();
-    console.log(response);
+      `http://searchapi106.azurewebsites.net/searchimg?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&img_url=https://feblob.blob.core.windows.net/search/${fileName}&doc=${document}&vid=${video}`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        arr = result;
+      })
+      .catch((error) => console.log("error", error));
+    console.log(arr);
+    setArray(arr);
   }
 
   async function searchFun() {
     const response = await fetch(
-      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
-    );
-    console.log(response);
-    setArray(response);
+      `http://searchapi106.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        arr = result;
+      })
+      .catch((error) => console.log("error", error));
+    console.log(arr);
+    setArray(arr);
   }
   return (
     <div>
@@ -133,6 +144,7 @@ function SearchResultsPage(props) {
                 Image
               </Button>
             </Stack>
+            <br />
             <div className="search-results-page">
               <h2>Search results...</h2>
               <Row xs={2} md={3} className="g-4">

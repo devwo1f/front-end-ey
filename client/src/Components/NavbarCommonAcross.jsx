@@ -1,5 +1,12 @@
 import React from "react";
-import { Navbar, Container, Nav, Button, FormControl } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Nav,
+  Button,
+  FormControl,
+  Badge,
+} from "react-bootstrap";
 import logosmall from "../Assets/ey-small.png";
 import "../css/navbarcommonacross.css";
 import { useHistory } from "react-router";

@@ -10,6 +10,7 @@ function ImageUpload() {
   const [desc, setDesc] = useState();
   var data = "";
   const [usr, setUsr] = useState();
+  const [txt, setTxt] = useState();
 
   const currTime = Date.now();
   const fileName = userName + "_" + currTime;
@@ -56,11 +57,12 @@ function ImageUpload() {
     setTagValue(data[2]);
     setDesc(data[1]);
     setUsr(fileName);
+    setTxt(data[0]);
   }
 
   async function save() {
     const response = await fetch(
-      `http://searchapi104.azurewebsites.net/recvdata?usr_nm=${userName}&img_url=img_url=https://feblob.blob.core.windows.net/uploads/${usr}&img_id=${usr}&txt=n&desc=${desc}&tags=[${tagValue}]&origin=${usr}`
+      `http://searchapi104.azurewebsites.net/recvdata?usr_nm=${userName}&img_url=img_url=https://feblob.blob.core.windows.net/uploads/${usr}&img_id=${usr}&txt=${txt}&desc=${desc}&tags=[${tagValue}]&origin=${usr}`
     );
     console.log(response);
   }
@@ -98,6 +100,11 @@ function ImageUpload() {
       <InputGroup>
         <InputGroup.Text>Description</InputGroup.Text>
         <FormControl as="textarea" aria-label="With textarea" value={desc} />
+      </InputGroup>
+      <br />
+      <InputGroup>
+        <InputGroup.Text>Image Text</InputGroup.Text>
+        <FormControl as="textarea" aria-label="With textarea" value={txt} />
       </InputGroup>
     </div>
   );
