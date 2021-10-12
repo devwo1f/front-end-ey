@@ -82,7 +82,9 @@ function ImageUpload() {
           Upload
         </Button>
         <div className="vr" />
-        <Button variant="outline-warning">Validate</Button>
+        <Button onClick={save} variant="outline-warning">
+          Save
+        </Button>
       </Stack>
       <br />
       <InputGroup className="mb-3">
@@ -97,9 +99,6 @@ function ImageUpload() {
         <InputGroup.Text>Description</InputGroup.Text>
         <FormControl as="textarea" aria-label="With textarea" value={desc} />
       </InputGroup>
-      <Button variant="primary" onClick={save}>
-        Save
-      </Button>
     </div>
   );
 }
