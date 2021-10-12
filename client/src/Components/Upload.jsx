@@ -8,6 +8,9 @@ import NavbarCommonAcross from "./NavbarCommonAcross";
 import "../css/navbarsearchpage.css";
 
 function Upload() {
+  const userName = sessionStorage.getItem("username");
+  const currTime = Date.now();
+  const fileName = userName + "_" + currTime;
   return (
     <div>
       <NavbarCommonAcross />
@@ -32,7 +35,7 @@ function Upload() {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <h2>Image Upload</h2>
-                  <ImageUpload />
+                  <ImageUpload filename={fileName} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
                   <h2>File Upload</h2>
