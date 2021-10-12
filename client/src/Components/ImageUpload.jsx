@@ -6,17 +6,21 @@ import { BlobServiceClient } from "@azure/storage-blob";
 function ImageUpload() {
   const userName = sessionStorage.getItem("username");
   const [file, setFile] = useState();
-  const currTime = Date.now();
-  const fileName = userName + "_" + currTime;
   const [tagValue, setTagValue] = useState();
   const [desc, setDesc] = useState();
   var data = "";
+  const [usr, setUsr] = useState();
+
+  const currTime = Date.now();
+  const fileName = userName + "_" + currTime;
 
   console.log(userName);
 
   const onFileChange = (e) => setFile(e.target.files[0]);
 
   async function uploadFile() {
+    const currTime = Date.now();
+    const fileName = userName + "_" + currTime;
     let storageAccountName = "feblob";
     let sasToken =
       "sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=2021-10-19T21:57:16Z&st=2021-10-06T13:57:16Z&spr=https&sig=j5DNoN2tAzuTWHRZZrFfqto2ba%2FeYSgt%2Fn87SNIcCw4%3D";
@@ -32,9 +36,7 @@ function ImageUpload() {
     const blobClient = containerClient.getBlockBlobClient(fileName);
     const options = { blobHTTPHeaders: { blobContentType: file.type } };
     await blobClient.uploadBrowserData(file, options);
-  }
 
-  async function validate() {
     var requestOptions = {
       method: "POST",
       redirect: "follow",
@@ -53,8 +55,15 @@ function ImageUpload() {
     // console.log(data);
     setTagValue(data[2]);
     setDesc(data[1]);
+    setUsr(fileName);
   }
 
+  async function save() {
+    const response = await fetch(
+      `http://searchapi104.azurewebsites.net/recvdata?usr_nm=${userName}&img_url=img_url=https://feblob.blob.core.windows.net/uploads/${usr}&img_id=${usr}&txt=n&desc=${desc}&tags=[${tagValue}]&origin=${usr}`
+    );
+    console.log(response);
+  }
   return (
     <div>
       <br />
@@ -73,9 +82,7 @@ function ImageUpload() {
           Upload
         </Button>
         <div className="vr" />
-        <Button variant="outline-warning" onClick={validate}>
-          Validate
-        </Button>
+        <Button variant="outline-warning">Validate</Button>
       </Stack>
       <br />
       <InputGroup className="mb-3">
@@ -90,6 +97,9 @@ function ImageUpload() {
         <InputGroup.Text>Description</InputGroup.Text>
         <FormControl as="textarea" aria-label="With textarea" value={desc} />
       </InputGroup>
+      <Button variant="primary" onClick={save}>
+        Save
+      </Button>
     </div>
   );
 }
