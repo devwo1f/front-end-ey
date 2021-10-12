@@ -73,7 +73,7 @@ function SearchResultsPage(props) {
 
   async function searchFun() {
     const response = await fetch(
-      `http://searchapi106.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
+      `http://searchapi108.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${text}`
     )
       .then((response) => response.json())
       .then((result) => {
