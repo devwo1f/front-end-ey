@@ -80,7 +80,7 @@ function Searchpage() {
   }
   async function searchFun() {
     const response = await fetch(
-      `http://searchapi102.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${searchText}`
+      `http://searchapi108.azurewebsites.net/searchtxt?usr_nm=${userName}&upload_me=${uploadedByMe}&loc=${location}&dep=${department}&doc=${document}&vid=${video}&txt_q=${searchText}`
     );
     const data = await response.json();
     console.log(data);
