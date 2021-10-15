@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { Button, Form, Col, FloatingLabel } from "react-bootstrap";
+import { Button, Form, Col, FloatingLabel, Row } from "react-bootstrap";
 import logo from "../Assets/ey-logo.png";
 import "../css/register.css";
 import Navbarcommon from "./Navbar";
