@@ -159,6 +159,7 @@ function SearchResultsPage(props) {
                           varian="top"
                           className="images-result"
                           src={`https://feblob.blob.core.windows.net/uploads/${image}`}
+                          alt="video/doc"
                         />
                       </a>
                     </Card>
